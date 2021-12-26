@@ -3,9 +3,9 @@
 install the following technologies-
 
 tailwindcss - done
-rspec - 
-factorybot -
-devise - 
+rspec - done
+factorybot - done
+devise - done
 policy gem cancancan or something else-
 
 need the following models and associations

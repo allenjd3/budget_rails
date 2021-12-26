@@ -77,3 +77,5 @@ end
 gem "rspec-rails", "~> 5.0", :groups => [:development, :test]
 
 gem "factory_bot_rails", "~> 6.2", :groups => [:development, :test]
+
+gem "devise", "~> 4.8"
