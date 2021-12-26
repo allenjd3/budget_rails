@@ -1,24 +1,50 @@
-# README
+# Roadmap
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+install the following technologies-
 
-Things you may want to cover:
+tailwindcss - done
+rspec - 
+factorybot -
+devise - 
+policy gem cancancan or something else-
 
-* Ruby version
+need the following models and associations
 
-* System dependencies
+Team
+- name
+- Has many users
+- id
 
-* Configuration
+User
+- belongs_to Team
 
-* Database creation
+Month
+- month
+- year
+- monthly_planned nullable
+- belongs_to Team
 
-* Database initialization
+Paycheck
+- name
+- payment - int
+- pay_date
+- belongs_to Month
 
-* How to run the test suite
+Category
+- name
+- belongs_to month
 
-* Services (job queues, cache servers, search engines, etc.)
+Item
+- name
+- planned - int
+- remaining - int
+- is_fund - boolean or date
+- belongs_to Month
 
-* Deployment instructions
+Transactions
+- name
+- belongs_to item
+- spent - int
+- spent_date
 
-* ...
+
