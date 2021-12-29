@@ -17,12 +17,17 @@ RSpec.describe "/teams", type: :request do
   # Team. As you add validations to Team, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { name: "My First Name"}
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { name: "" }
   }
+
+  before(:each) do
+    @user = FactoryBot.create(:user)
+    sign_in @user
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -78,7 +83,7 @@ RSpec.describe "/teams", type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post teams_url, params: { team: invalid_attributes }
-        expect(response).to be_successful
+        expect(response.status).to eq(422)
       end
     end
   end
@@ -86,14 +91,14 @@ RSpec.describe "/teams", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { name: "My Second Name"}
       }
 
       it "updates the requested team" do
         team = Team.create! valid_attributes
         patch team_url(team), params: { team: new_attributes }
         team.reload
-        skip("Add assertions for updated state")
+        expect(team.name).to eq("My Second Name")
       end
 
       it "redirects to the team" do
@@ -108,7 +113,7 @@ RSpec.describe "/teams", type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         team = Team.create! valid_attributes
         patch team_url(team), params: { team: invalid_attributes }
-        expect(response).to be_successful
+        expect(response.status).to eq(422)
       end
     end
   end

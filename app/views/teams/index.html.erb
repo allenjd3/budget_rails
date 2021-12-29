@@ -3,21 +3,37 @@
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
 
-  <div class="flex justify-between items-center">
+  <div class="items-center mb-6">
     <h1 class="font-bold text-4xl">Teams</h1>
-    <%= link_to 'New team', new_team_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
   <div id="teams" class="min-w-full">
-    <table>
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-50">
       <tr>
-        <th>Team Name</th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          Name
+        </th>
+        <th scope="col" class="relative px-6 py-3">
+          <span class="sr-only">Edit</span>
+        </th>
       </tr>
-    <% @teams.each do |team| %>
-      <tr>
-        <td><%= team.name %></td>
-      </tr>
-    <% end %>
+      </thead>
+      <tbody class="bg-white divide-y divide-gray-200">
+      <% @teams.each do |team| %>
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <a href="<%= team_path team.id %>" class="font-bold"><%= team.name %></a>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+            <a href="<%= edit_team_path team.id %>" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
     </table>
+    <div class="inline-block my-6">
+      <%= link_to 'New team', new_team_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    </div>
   </div>
 </div>

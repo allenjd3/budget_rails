@@ -10,9 +10,11 @@ RSpec.describe "teams/index", type: :view do
         name: "Name"
       )
     ])
+    @user = FactoryBot.create(:user)
   end
 
   it "renders a list of teams" do
+    sign_in @user
     render
     assert_select "tr>td", text: "Name".to_s, count: 2
   end

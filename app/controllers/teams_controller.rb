@@ -1,9 +1,10 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /teams or /teams.json
   def index
-    @teams = Team.all
+    @teams = current_user.teams
   end
 
   # GET /teams/1 or /teams/1.json
@@ -21,7 +22,7 @@ class TeamsController < ApplicationController
 
   # POST /teams or /teams.json
   def create
-    @team = Team.new(team_params)
+    @team = current_user.teams.create(team_params)
 
     respond_to do |format|
       if @team.save

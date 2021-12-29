@@ -5,9 +5,11 @@ RSpec.describe "teams/new", type: :view do
     assign(:team, Team.new(
       name: "MyString"
     ))
+    @user = FactoryBot.create(:user)
   end
 
   it "renders new team form" do
+    sign_in @user
     render
 
     assert_select "form[action=?][method=?]", teams_path, "post" do
