@@ -12,7 +12,8 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5">
+    <main>
+      <%= render "components/main_nav" %>
       <% unless notice.nil? %>
         <div class="bg-blue-300 rounded-lg w-full p-6">
           <p class="notice"><%= notice %></p>
