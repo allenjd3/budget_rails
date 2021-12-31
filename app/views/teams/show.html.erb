@@ -1,15 +1,12 @@
-<div class="mx-auto md:w-2/3 w-full flex">
+<%= render "components/dashboard_window" do %>
   <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
 
     <%= render @team %>
 
-    <%= link_to 'Edit this team', edit_team_path(@team), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= render partial: "components/gray_button", locals: { message: "Edit this team", path: edit_team_path(@team) } %>
     <div class="inline-block ml-2">
-      <%= button_to 'Destroy this team', team_path(@team), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <%= render partial: "components/gray_destroy_button", locals: { message: "Delete this team", path: team_path(@team) } %>
     </div>
-    <%= link_to 'Back to teams', teams_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= render partial: "components/gray_button", locals: { message: "Back to teams", path: teams_path } %>
   </div>
-</div>
+<% end %>

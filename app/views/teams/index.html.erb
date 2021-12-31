@@ -1,13 +1,13 @@
-<div class="w-full">
+<%= render "components/dashboard_window" do %>
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
 
   <div class="items-center mb-6">
-    <h1 class="font-bold text-4xl">Teams</h1>
+    <%= render partial: "components/standard_subheading", locals: { message: "Teams"} %>
   </div>
 
-  <div id="teams" class="min-w-full">
+  <div id="teams" class="w-full">
     <table class="min-w-full divide-y divide-gray-200">
       <thead class="bg-gray-50">
       <tr>
@@ -33,7 +33,7 @@
       </tbody>
     </table>
     <div class="inline-block my-6">
-      <%= link_to 'New team', new_team_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+      <%= render partial: "components/standard_button", locals: { message: "New team", path: new_team_path} %>
     </div>
   </div>
-</div>
+<% end %>
