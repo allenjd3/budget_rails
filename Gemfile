@@ -83,3 +83,5 @@ gem "devise", "~> 4.8"
 gem "faker", "~> 2.19", :groups => [:development, :test]
 
 gem "mysql2", "~> 0.5.3"
+
+gem "money-rails", "~> 1.15"
