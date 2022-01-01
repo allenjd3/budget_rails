@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :teams
+  resources :teams, shallow: true do
+    resources :months
+  end
   devise_for :users
   get 'home/index'
   root to: 'home#index'
