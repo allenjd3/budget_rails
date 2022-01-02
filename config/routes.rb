@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :teams, shallow: true do
     resources :months
   end
+  resources :months, shallow: true, only: [] do
+    resources :categories
+  end
   devise_for :users
   get 'home/index'
   root to: 'home#index'
