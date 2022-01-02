@@ -52,10 +52,11 @@ class MonthsController < ApplicationController
 
   # DELETE /months/1 or /months/1.json
   def destroy
+    @team = @month.team
     @month.destroy
 
     respond_to do |format|
-      format.html { redirect_to months_url, notice: "Month was successfully destroyed." }
+      format.html { redirect_to team_months_url(@team), notice: "Month was successfully destroyed." }
       format.json { head :no_content }
     end
   end

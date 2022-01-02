@@ -70,12 +70,12 @@ RSpec.describe "/months", type: :request do
     context "with valid parameters" do
       it "creates a new Month" do
         expect {
-          post months_url, params: { month: valid_attributes }
+          post team_months_url(@team), params: { month: valid_attributes }
         }.to change(Month, :count).by(1)
       end
 
       it "redirects to the created month" do
-        post months_url, params: { month: valid_attributes }
+        post team_months_url(@team), params: { month: valid_attributes }
         expect(response).to redirect_to(month_url(Month.last))
       end
     end
@@ -83,13 +83,14 @@ RSpec.describe "/months", type: :request do
     context "with invalid parameters" do
       it "does not create a new Month" do
         expect {
-          post months_url, params: { month: invalid_attributes }
+          post team_months_url(@team), params: { month: invalid_attributes }
         }.to change(Month, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post months_url, params: { month: invalid_attributes }
-        expect(response).to be_successful
+        post team_months_url(@team), params: { month: invalid_attributes }
+        puts response.inspect
+        expect(response.status).to eq(422)
       end
     end
   end
@@ -97,14 +98,14 @@ RSpec.describe "/months", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { month: 20220201}
       }
 
       it "updates the requested month" do
         month = Month.create! valid_attributes
         patch month_url(month), params: { month: new_attributes }
         month.reload
-        skip("Add assertions for updated state")
+        expect(month.month.to_s).to eq('2022-02-01')
       end
 
       it "redirects to the month" do
@@ -119,7 +120,7 @@ RSpec.describe "/months", type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         month = Month.create! valid_attributes
         patch month_url(month), params: { month: invalid_attributes }
-        expect(response).to be_successful
+        expect(response.status).to eq(422)
       end
     end
   end
@@ -135,7 +136,7 @@ RSpec.describe "/months", type: :request do
     it "redirects to the months list" do
       month = Month.create! valid_attributes
       delete month_url(month)
-      expect(response).to redirect_to(months_url)
+      expect(response).to redirect_to(team_months_url(@team))
     end
   end
 end
