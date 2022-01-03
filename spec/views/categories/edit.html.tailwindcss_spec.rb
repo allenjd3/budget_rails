@@ -4,7 +4,7 @@ RSpec.describe "categories/edit", type: :view do
   before(:each) do
     @category = assign(:category, Category.create!(
       name: "MyString",
-      month: nil
+      month: FactoryBot.create(:month)
     ))
   end
 

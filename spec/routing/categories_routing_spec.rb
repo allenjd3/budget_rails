@@ -3,11 +3,11 @@ require "rails_helper"
 RSpec.describe CategoriesController, type: :routing do
   describe "routing" do
     it "routes to #index" do
-      expect(get: "/categories").to route_to("categories#index")
+      expect(get: "/months/1/categories").to route_to("categories#index", month_id: "1")
     end
 
     it "routes to #new" do
-      expect(get: "/categories/new").to route_to("categories#new")
+      expect(get: "months/1/categories/new").to route_to("categories#new", month_id: "1")
     end
 
     it "routes to #show" do
@@ -20,7 +20,7 @@ RSpec.describe CategoriesController, type: :routing do
 
 
     it "routes to #create" do
-      expect(post: "/categories").to route_to("categories#create")
+      expect(post: "/months/1/categories").to route_to("categories#create", month_id: "1")
     end
 
     it "routes to #update via PUT" do
