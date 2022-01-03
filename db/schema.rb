@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2022_01_02_210621) do
 
-  create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "categories", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.bigint "month_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -20,28 +20,29 @@ ActiveRecord::Schema.define(version: 2022_01_02_210621) do
     t.index ["month_id"], name: "index_categories_on_month_id"
   end
 
-  create_table "months", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "months", charset: "utf8mb3", force: :cascade do |t|
     t.date "month"
-    t.integer "monthly_planned"
+    t.integer "monthly_planned_cents", default: 0, null: false
+    t.string "monthly_planned_currency", default: "USD", null: false
     t.bigint "team_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["team_id"], name: "index_months_on_team_id"
   end
 
-  create_table "teams", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "teams", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "teams_users", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "teams_users", id: false, charset: "utf8mb3", force: :cascade do |t|
     t.bigint "team_id", null: false
     t.bigint "user_id", null: false
     t.index ["user_id", "team_id"], name: "index_teams_users_on_user_id_and_team_id", unique: true
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", charset: "utf8mb3", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
