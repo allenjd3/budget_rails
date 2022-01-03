@@ -2,10 +2,6 @@ require "rails_helper"
 
 RSpec.describe CategoriesController, type: :routing do
   describe "routing" do
-    it "routes to #index" do
-      expect(get: "/months/1/categories").to route_to("categories#index", month_id: "1")
-    end
-
     it "routes to #new" do
       expect(get: "months/1/categories/new").to route_to("categories#new", month_id: "1")
     end

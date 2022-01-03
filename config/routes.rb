@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :months
   end
   resources :months, shallow: true, only: [] do
-    resources :categories
+    resources :categories, except: [ :index ]
   end
   devise_for :users
   get 'home/index'

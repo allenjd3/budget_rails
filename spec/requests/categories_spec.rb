@@ -35,14 +35,6 @@ RSpec.describe "/categories", type: :request do
     }
   }
 
-  describe "GET /index" do
-    it "renders a successful response" do
-      Category.create! valid_attributes
-      get month_categories_url(@month)
-      expect(response).to be_successful
-    end
-  end
-
   describe "GET /show" do
     it "renders a successful response" do
       category = Category.create! valid_attributes
