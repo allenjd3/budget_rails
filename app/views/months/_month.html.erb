@@ -10,8 +10,8 @@
   </p>
 
   <% if action_name != "show" %>
-    <%= link_to "Show this month", month, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this month', edit_month_path(month), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= render partial: "components/gray_button", locals: { message: 'Show this month', path: month} %>
+    <%= render partial: "components/gray_button", locals: { message: 'Edit this month', path: edit_month_path(month) } %>
     <hr class="mt-6">
   <% end %>
 </div>
