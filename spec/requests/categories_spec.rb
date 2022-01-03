@@ -14,8 +14,10 @@
 
 RSpec.describe "/categories", type: :request do
 
-  before(:all) do
+  before(:each) do
     @month = FactoryBot.create(:month)
+    @user = @month.team.users.create(FactoryBot.attributes_for(:user))
+    sign_in @user
   end
   # Category. As you add validations to Category, be sure to
   # adjust the attributes here as well.
