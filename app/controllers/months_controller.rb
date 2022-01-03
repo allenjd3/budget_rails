@@ -1,5 +1,6 @@
 class MonthsController < ApplicationController
   before_action :set_month, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /teams/:team_id/months or teams/:team_id/months.json
   def index

@@ -16,8 +16,10 @@ RSpec.describe "/months", type: :request do
   
   # Month. As you add validations to Month, be sure to
   # adjust the attributes here as well.
-  before(:all) do
+  before(:each) do
     @team = FactoryBot.create(:team)
+    @user = @team.users.create(FactoryBot.attributes_for(:user))
+    sign_in @user
   end
   let(:valid_attributes) {
     {
