@@ -23,8 +23,6 @@ RSpec.describe "items/new", type: :view do
       assert_select "input[name=?]", "item[remaining]"
 
       assert_select "input[name=?]", "item[is_fund]"
-
-      assert_select "input[name=?]", "item[category_id]"
     end
   end
 end

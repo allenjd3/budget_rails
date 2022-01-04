@@ -8,7 +8,6 @@ class ItemsController < ApplicationController
 
   # GET categories/:category_id/items/1 or /items/1.json
   def show
-    @category = Category.find(params[:category_id])
   end
 
   # GET /items/new
@@ -28,7 +27,7 @@ class ItemsController < ApplicationController
     respond_to do |format|
       if @item.save
         format.html { redirect_to @category.month, notice: "Item was successfully created." }
-        format.json { render :show, status: :created, location: @item }
+        format.json { render :show, status: :created, location: @category.month }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @item.errors, status: :unprocessable_entity }

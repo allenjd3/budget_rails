@@ -84,21 +84,21 @@ RSpec.describe "/items", type: :request do
       end
 
       it "redirects to the created item" do
-        post items_url, params: { item: valid_attributes }
-        expect(response).to redirect_to(item_url(Item.last))
+        post category_items_url(@category), params: { item: valid_attributes }
+        expect(response).to redirect_to(@category.month)
       end
     end
 
     context "with invalid parameters" do
       it "does not create a new Item" do
         expect {
-          post items_url, params: { item: invalid_attributes }
+          post category_items_url(@category), params: { item: invalid_attributes }
         }.to change(Item, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post items_url, params: { item: invalid_attributes }
-        expect(response).to be_successful
+        post category_items_url(@category), params: { item: invalid_attributes }
+        expect(response.status).to eq(422)
       end
     end
   end
@@ -128,7 +128,7 @@ RSpec.describe "/items", type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         item = Item.create! valid_attributes
         patch item_url(item), params: { item: invalid_attributes }
-        expect(response).to be_successful
+        expect(response.status).to eq(422)
       end
     end
   end
@@ -144,7 +144,7 @@ RSpec.describe "/items", type: :request do
     it "redirects to the items list" do
       item = Item.create! valid_attributes
       delete item_url(item)
-      expect(response).to redirect_to(items_url)
+      expect(response).to redirect_to(@category.month)
     end
   end
 end
