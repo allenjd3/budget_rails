@@ -1,6 +1,6 @@
 class Month < ApplicationRecord
   validates :month, presence: true
   belongs_to :team
-  monetize :monthly_planned_cents, with_currency: :usd
+  monetize :monthly_planned_cents
   has_many :categories
 end

@@ -14,8 +14,6 @@ RSpec.describe "categories/edit", type: :view do
     assert_select "form[action=?][method=?]", category_path(@category), "post" do
 
       assert_select "input[name=?]", "category[name]"
-
-      assert_select "input[name=?]", "category[month_id]"
     end
   end
 end

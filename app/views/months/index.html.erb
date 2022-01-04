@@ -9,6 +9,8 @@
   </div>
 
   <div id="months" class="min-w-full">
-    <%= render @months %>
+    <% @months.each do |month| %>
+      <%= link_to month.month.strftime('%B %Y'), month, class: "font-bold" %>
+    <% end %>
   </div>
 <% end %>
