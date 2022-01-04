@@ -11,5 +11,6 @@
       <%= render partial: "components/gray_destroy_button", locals: { message: 'Destroy this month', path: month_path(@month) } %>
     </div>
     <%= render partial: "components/gray_button", locals: { message: 'Back to months', path: team_months_path(@month.team) } %>
+    <%= render partial: "components/gray_button", locals: { message: 'Add new category', path: new_month_category_path(@month)} %>
   </div>
 <% end %>
