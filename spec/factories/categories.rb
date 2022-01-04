@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :category do
     name { "MyString" }
-    month { nil }
+    month { FactoryBot.create(:month) }
   end
 end

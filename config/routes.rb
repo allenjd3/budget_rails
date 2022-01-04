@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  resources :items
   resources :teams, shallow: true do
     resources :months
   end
   resources :months, shallow: true, only: [] do
     resources :categories, except: [ :index ]
+  end
+  resources :categories, shallow: true, only: [] do
+    resources :items, except: [ :index ]
   end
   devise_for :users
   get 'home/index'
