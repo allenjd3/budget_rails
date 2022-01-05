@@ -62,7 +62,7 @@ RSpec.describe "/items", type: :request do
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_item_url
+      get new_category_item_path(@category)
       expect(response).to be_successful
     end
   end

@@ -22,8 +22,10 @@ ActiveRecord::Schema.define(version: 2022_01_04_015850) do
 
   create_table "items", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
-    t.integer "planned"
-    t.integer "remaining"
+    t.integer "planned_cents", default: 0, null: false
+    t.string "planned_currency", default: "USD", null: false
+    t.integer "remaining_cents", default: 0, null: false
+    t.string "remaining_currency", default: "USD", null: false
     t.boolean "is_fund"
     t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false

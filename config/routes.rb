@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :categories, except: [ :index ]
   end
   resources :categories, shallow: true, only: [] do
-    resources :items, except: [ :index ]
+    resources :items, except: [ :index, :show ]
   end
   devise_for :users
   get 'home/index'

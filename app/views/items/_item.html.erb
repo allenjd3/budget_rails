@@ -1,32 +1,5 @@
-<div id="<%= dom_id item %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= item.name %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Planned:</strong>
-    <%= item.planned %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Remaining:</strong>
-    <%= item.remaining %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Is fund:</strong>
-    <%= item.is_fund %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Category:</strong>
-    <%= item.category_id %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this item", item, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this item', edit_item_path(item), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+<div id="<%= dom_id item %>" class="flex w-full p-6 rounded-lg bg-blue-50 font-bold space-x-2 my-2">
+  <div class="flex-1"><%= link_to item.name, edit_item_path(item) %></div>
+  <div class="text-blue-500"><%= item.planned %></div>
+  <div class="<%= item.remaining_cents >= 0 ? 'text-green-500' : 'text-red-600'%>"><%= item.remaining %></div>
 </div>

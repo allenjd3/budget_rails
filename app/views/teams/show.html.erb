@@ -8,5 +8,6 @@
       <%= render partial: "components/gray_destroy_button", locals: { message: "Delete this team", path: team_path(@team) } %>
     </div>
     <%= render partial: "components/gray_button", locals: { message: "Back to teams", path: teams_path } %>
+    <%= render partial: "components/gray_button", locals: { message: "Go to Months", path: team_months_path(@team) } %>
   </div>
 <% end %>

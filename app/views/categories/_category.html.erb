@@ -1,5 +1,6 @@
 <div id="<%= dom_id category %>" class="border-2 border-blue-100 p-4 rounded-lg my-5 border-dashed">
   <h3 class="text-2xl font-bold mb-5"><%= category.name %></h3>
+  <%= render partial: "items/item", collection: category.items %>
 
   <%= render partial: "components/gray_button", locals: { message: 'Add Item', path: new_category_item_path(category)} %>
 </div>
