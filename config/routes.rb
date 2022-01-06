@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   resources :transactions, only: [ :new, :create ]
 
   devise_for :users
+
+  get "users/:id", to: redirect('/teams/new'), as: :user
+
   get 'home/index'
   root to: 'home#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

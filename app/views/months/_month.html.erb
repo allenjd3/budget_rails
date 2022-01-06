@@ -17,9 +17,11 @@
     <div class="flex-1"><%= render @categories %></div>
     <div class="w-1/4 my-5 p-4 border-blue-100 border-2 border-dashed rounded-lg">
       <div>
+        <h3 class="text-2xl font-bold mb-2">Recent Transactions</h3>
         <% @transactions.each do |transaction| %>
-          <div>
-            <%= link_to transaction.name, transaction %>
+          <div class="my-2 border-b flex justify-between">
+            <div><%= link_to transaction.name, transaction %></div>
+            <div>$<%= transaction.spent %></div>
           </div>
         <% end %>
       </div>
