@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_04_015850) do
+ActiveRecord::Schema.define(version: 2022_01_05_015907) do
 
   create_table "categories", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
@@ -55,6 +55,17 @@ ActiveRecord::Schema.define(version: 2022_01_04_015850) do
     t.index ["user_id", "team_id"], name: "index_teams_users_on_user_id_and_team_id", unique: true
   end
 
+  create_table "transactions", charset: "utf8mb3", force: :cascade do |t|
+    t.string "name"
+    t.bigint "item_id", null: false
+    t.integer "spent_cents", default: 0, null: false
+    t.string "spent_currency", default: "USD", null: false
+    t.date "spent_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_transactions_on_item_id"
+  end
+
   create_table "users", charset: "utf8mb3", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -70,4 +81,5 @@ ActiveRecord::Schema.define(version: 2022_01_04_015850) do
   add_foreign_key "categories", "months"
   add_foreign_key "items", "categories"
   add_foreign_key "months", "teams"
+  add_foreign_key "transactions", "items"
 end

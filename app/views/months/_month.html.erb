@@ -13,8 +13,18 @@
     </div>
   </div>
 
-
-  <%= render @categories %>
+  <div class="flex gap-4">
+    <div class="flex-1"><%= render @categories %></div>
+    <div class="w-1/4 my-5 p-4 border-blue-100 border-2 border-dashed rounded-lg">
+      <div>
+        <% @transactions.each do |transaction| %>
+          <div>
+            <%= link_to transaction.name, transaction %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
   <% if action_name != "show" %>
     <%= render partial: "components/gray_button", locals: { message: 'Show this month', path: month} %>

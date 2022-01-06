@@ -10,6 +10,7 @@ class MonthsController < ApplicationController
 
   # GET /months/1 or /months/1.json
   def show
+    @transactions = Transaction.where(item_id: (Item.where(category_id: (Category.where(month_id: @month.id).pluck(:id))).pluck(:id))).order(created_at: :desc).limit(10)
     @categories = @month.categories
   end
 

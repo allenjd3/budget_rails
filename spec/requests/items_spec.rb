@@ -16,6 +16,10 @@ RSpec.describe "/items", type: :request do
 
   before(:all) do
     @category = FactoryBot.create(:category)
+    @user = FactoryBot.create(:user)
+  end
+  before(:each) do
+    sign_in @user
   end
   # Item. As you add validations to Item, be sure to
   # adjust the attributes here as well.
@@ -43,22 +47,6 @@ RSpec.describe "/items", type: :request do
       category: @category,
     }
   }
-
-  describe "GET /index" do
-    it "renders a successful response" do
-      Item.create! valid_attributes
-      get items_url
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET /show" do
-    it "renders a successful response" do
-      item = Item.create! valid_attributes
-      get item_url(item)
-      expect(response).to be_successful
-    end
-  end
 
   describe "GET /new" do
     it "renders a successful response" do
