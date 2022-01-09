@@ -27,20 +27,23 @@ class TransactionsController < ApplicationController
 
   # POST items/:item_id/transactions or /transactions.json
   def create
-    if params.has_key?(:item_id)
-      @item = Item.find(params[:item_id])
-      @transaction = @item.transactions.create(transaction_params)
-    else
-      @transaction = Transaction.new(transaction_params)
-    end
-
-    respond_to do |format|
-      if @transaction.save
-        format.html { redirect_to @transaction.item.category.month, notice: "Transaction was successfully created." }
-        format.json { render :show, status: :created, location: @transaction }
+    ActiveRecord::Base.transaction do
+      if params.has_key?(:item_id)
+        @item = Item.find(params[:item_id])
+        @transaction = @item.transactions.new(transaction_params)
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @transaction.errors, status: :unprocessable_entity }
+        @transaction = Transaction.new(transaction_params)
+        @item = Item.find(transaction_params[:item_id])
+      end
+
+      respond_to do |format|
+        if @transaction.save
+          format.html { redirect_to @transaction.item.category.month, notice: "Transaction was successfully created." }
+          format.json { render :show, status: :created, location: @transaction }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @transaction.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
