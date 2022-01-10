@@ -2,6 +2,7 @@
   <%= render partial: "components/standard_subheading", locals: { message: "Log in"} %>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", object: resource %>
     <div class="space-y-2">
       <div class="field">
         <%= f.label :email %><br/>
@@ -21,7 +22,7 @@
       <% end %>
 
       <div class="actions">
-        <%= render partial: "components/form_button", locals: { form: f, button_name: "Log in"} %>
+        <%= f.submit class: "rounded-lg py-2 px-4 bg-blue-600 text-white inline-block font-medium cursor-pointer", data: {turbo: false} %>
       </div>
     </div>
   <% end %>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>BudgetRails</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -14,18 +14,6 @@
   <body>
   <main>
     <%= render "components/main_nav" %>
-    <%= render "components/small_window" do %>
-      <% unless notice.nil? %>
-        <div class="bg-blue-300 rounded-lg w-full my-16 p-6 mx-auto">
-          <p class="notice"><%= notice %></p>
-        </div>
-      <% end %>
-      <% unless alert.nil? %>
-        <div class="bg-blue-300 rounded-lg w-full my-16 p-6 mx-auto">
-          <p class="alert"><%= alert %></p>
-        </div>
-      <% end %>
-    <% end %>
     <%= yield %>
   </main>
   </body>
