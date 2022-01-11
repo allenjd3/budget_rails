@@ -8,7 +8,7 @@
       </div>
       <div class="p-5 bg-green-100 rounded-lg w-1/2 flex flex-col justify-center items-center">
         <h3 class="text-2xl font-bold mb-5">Remaining</h3>
-        <div class="text-2xl"><%= "$100.00" %></div>
+        <div class="text-2xl"><%= month.calculate_remaining.format %></div>
       </div>
     </div>
   </div>
@@ -17,7 +17,12 @@
     <div class="flex-1"><%= render @categories %></div>
     <div class="w-1/4 my-5 p-4 border-blue-100 border-2 border-dashed rounded-lg">
       <div>
-        <%= render partial: "transactions/form", locals: {transaction: Transaction.new, items: Item.where(category_id: @month.categories.pluck(:id))} %>
+        <div data-controller="toggle-transaction">
+          <button data-action="click->toggle-transaction#toggleShow">Toggle Add Transaction</button>
+          <div data-toggle-transaction-target="myForm">
+            <%= render partial: "transactions/form", locals: { transaction: Transaction.new, items: Item.where(category_id: @month.categories.pluck(:id)) } %>
+          </div>
+        </div>
         <h3 class="text-2xl font-bold mb-2">Recent Transactions</h3>
         <% @transactions.each do |transaction| %>
           <div class="my-2 border-b flex justify-between">
